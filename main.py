@@ -1,5 +1,7 @@
 from ctypes import *
 
+from PIL import Image
+
 #bool_ 	Boolean (True or False) stored as a byte
 #int_ 	Default integer type (same as C long; normally either int64 or int32)
 #intc 	Identical to C int (normally int32 or int64)
@@ -49,4 +51,13 @@ def qadd7(i, j):
 
 print (qadd8(255, 5));
 i = c_ushort(-3);
-print (i)
+print (i);
+
+im = Image.new("RGB", (512, 512), "black")
+im.putpixel((10, 10), (255,  0, 0))
+im.save("tst",  'bmp')
+
+#f = open('ramp.png', 'wb')      # binary mode is important
+#w = png.Writer(255, 1, greyscale=True)
+#w.write(f, [range(256)])
+#f.close()
