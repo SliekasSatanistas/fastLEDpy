@@ -55,7 +55,9 @@ print (i);
 
 im = Image.new("RGB", (512, 512), "black")
 im.putpixel((10, 10), (255,  0, 0))
-im.save("tst",  'bmp')
+im.putpixel((20, 20), (0,  255, 0))
+im.putpixel((30, 40), (0,  0, 255))
+im.save("tst.bmp",  'bmp')
 
 #f = open('ramp.png', 'wb')      # binary mode is important
 #w = png.Writer(255, 1, greyscale=True)
