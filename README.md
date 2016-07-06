@@ -9,6 +9,6 @@ For testing FastLed into grafichs (image file) it is neaded to instal library nu
 https://sourceforge.net/projects/numpy/files/NumPy/
 How to instal this library, read "readme".
 but for the las time i was neaded to run these commands:
-# sudo apt-get install python-setuptools
-# sudo apt-get install python-dev
-# python setup.py build -j 4 install --prefix $HOME/.local
+sudo apt-get install python-setuptools
+sudo apt-get install python-dev
+python setup.py build -j 4 install --prefix $HOME/.local
