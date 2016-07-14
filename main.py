@@ -1,6 +1,6 @@
 from ctypes import *
 
-from PIL import Image
+import neopixel_image
 
 #bool_ 	Boolean (True or False) stored as a byte
 #int_ 	Default integer type (same as C long; normally either int64 or int32)
@@ -53,13 +53,15 @@ print (qadd8(255, 5));
 i = c_ushort(-3);
 print (i);
 
-im = Image.new("RGB", (512, 512), "black")
-im.putpixel((10, 10), (255,  0, 0))
-im.putpixel((20, 20), (0,  255, 0))
-im.putpixel((30, 40), (0,  0, 255))
-im.save("tst.bmp",  'bmp')
-
 #f = open('ramp.png', 'wb')      # binary mode is important
 #w = png.Writer(255, 1, greyscale=True)
 #w.write(f, [range(256)])
 #f.close()
+
+neopixel_image.drawAxis()
+neopixel_image.putAxisPixel(0, 0)
+neopixel_image.putAxisPixel(2, -2)
+
+neopixel_image.putAxisPixel(5, 256)
+neopixel_image.putAxisPixel(0, 254)
+neopixel_image.saveImage()
