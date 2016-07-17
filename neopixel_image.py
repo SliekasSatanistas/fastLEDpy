@@ -47,26 +47,30 @@ class Axis:
         draw.line((x,  self.axisPosition-2,  x, self.axisPosition-6))
 #------------------------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------------------------#
-class Pixels:
+class Graph:
     def __init__(self,  axis, color):
         self.color = color
         self.lastPixelCoord = None;
-        self.pixColorLower = 4
+        self.jointColorLower = 4
         self.axis = axis
+        self.currXPos = 0
 
     def joinPixels(self,  coord):
         #coord = self.realCoords(coord)
         coord = self.axis.realCoords(coord)
         #lastCoord = self.realCoords(self.lastPixelCoord)
         lastCoord = self.axis.realCoords(self.lastPixelCoord)
-        r = self.color[0] / self.pixColorLower
-        g = self.color[1] / self.pixColorLower
-        b = self.color[2] / self.pixColorLower
+        r = self.color[0] / self.jointColorLower
+        g = self.color[1] / self.jointColorLower
+        b = self.color[2] / self.jointColorLower
         draw.line((lastCoord, coord),  (r, g, b))
         im.putpixel(lastCoord, self.color)
         
-            
-    def putPixel (self, coord ):
+    def putPixel (self,  y):
+        self.putPixelCoord((self.currXPos, y))
+        self.currXPos = self.currXPos + 1
+        
+    def putPixelCoord (self, coord ):
         realCoord = self.axis.realCoords(coord)
         
         #Adding some small lines, if coords are wrong

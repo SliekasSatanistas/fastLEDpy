@@ -1,6 +1,7 @@
 from ctypes import *
 
 import neopixel_image
+import math
 
 #bool_ 	Boolean (True or False) stored as a byte
 #int_ 	Default integer type (same as C long; normally either int64 or int32)
@@ -54,37 +55,54 @@ i = c_ushort(-3);
 print (i);
 
 
+def cos8(value):
+  return int(math.cos(float(value)/128*math.pi+math.pi)*128)+128
+#return int(math.cos(float(value)/128))
+
+def sin8(value):
+  return int(math.sin(float(value)/128*math.pi+math.pi)*128)+128
+
 ax = neopixel_image.Axis(256, 40)
 
-pixR = neopixel_image.Pixels(ax, (255, 0, 0))
-pixR.putPixel((0, 0))
-pixR.putPixel((20, -2))
-pixR.putPixel((40, 50))
-pixR.putPixel((60, 60))
-pixR.putPixel((80, 257))
-pixR.putPixel((100, 110))
-pixR.putPixel((120, 130))
+pixR = neopixel_image.Graph(ax, (255, 0, 0))
+pixR.putPixelCoord((0, 0))
+pixR.putPixelCoord((20, -2))
+pixR.putPixelCoord((40, 50))
+pixR.putPixelCoord((60, 60))
+pixR.putPixelCoord((80, 257))
+pixR.putPixelCoord((100, 110))
+pixR.putPixelCoord((120, 130))
 
-pixG = neopixel_image.Pixels(ax, (255, 255, 0))
-pixG.putPixel((0, 0))
-pixG.putPixel((10, 40))
-pixG.putPixel((30, 20))
-pixG.putPixel((40, 50))
-pixG.putPixel((50, 30))
-pixG.putPixel((60, -1))
-pixG.putPixel((70, 20))
-pixG.putPixel((80, 60))
-pixG.putPixel((90, 256))
-pixG.putPixel((100, 200))
-pixG.putPixel((110, 200))
+pixG = neopixel_image.Graph(ax, (255, 255, 0))
+pixG.putPixelCoord((0, 0))
+pixG.putPixelCoord((10, 40))
+pixG.putPixelCoord((30, 20))
+pixG.putPixelCoord((40, 50))
+pixG.putPixelCoord((50, 30))
+pixG.putPixelCoord((60, -1))
+pixG.putPixelCoord((70, 20))
+pixG.putPixelCoord((80, 60))
+pixG.putPixelCoord((90, 256))
+pixG.putPixelCoord((100, 200))
+pixG.putPixelCoord((110, 200))
 
-pixB = neopixel_image.Pixels(ax, (0, 0, 255))
-pixB.putPixel((100, 0))
-pixB.putPixel((110, 40))
-pixB.putPixel((130, 20))
-pixB.putPixel((140, 50))
-pixB.putPixel((150, 30))
-pixB.putPixel((160, -1))
-pixB.putPixel((170, 20))
+pixB = neopixel_image.Graph(ax, (0, 0, 255))
+pixB.putPixelCoord((100, 0))
+pixB.putPixelCoord((110, 40))
+pixB.putPixelCoord((130, 20))
+pixB.putPixelCoord((140, 50))
+pixB.putPixelCoord((150, 30))
+pixB.putPixelCoord((160, -1))
+pixB.putPixelCoord((170, 20))
+
+pixG = neopixel_image.Graph(ax, (0, 255, 0))
+for i in range(600):
+                pixG.putPixel(cos8(i))
+
+
+#pixZ = neopixel_image.Graph(ax, (0, 255, 255))
+#for i in range(600):
+#                pixZ.putPixel(sin8(i))
 
 neopixel_image.saveImage()
+
