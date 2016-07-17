@@ -41,7 +41,7 @@ def cos8(value):
 def sin8(value):
   return int(math.sin(float(value)/128*3.14159+3.14159)*128)+128
 
-  def SINValue(range, value):
+def SINValue(range, value):
   if range>=1:
     range = range - 1;
   return abs((int(math.sin((float(value)/float(range)-float(range)/2)*math.pi)*float(range))-range)/2)
