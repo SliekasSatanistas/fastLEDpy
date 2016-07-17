@@ -87,6 +87,21 @@ class Graph:
         self.lastPixelCoord = coord
 #------------------------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------------------------#
+class Pixels:
+    def __init__(self,  axis):
+        self.axis = axis
+        self.currXPos = 0
+        
+    def putPixel (self,  y):
+        self.putPixelCoord((self.currXPos, y))
+        self.currXPos = self.currXPos + 1
+        
+    def putPixelCoord (self, coord,  color ):
+        realCoord = self.axis.realCoords(coord)
+        
+        im.putpixel(realCoord, color)
+#------------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------------------#
 def saveImage():
     im.save(imageName,  imageFormat)
 

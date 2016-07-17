@@ -1,6 +1,7 @@
 from ctypes import *
 
 import neopixel_image
+from neopixel import *
 import math
 
 #bool_ 	Boolean (True or False) stored as a byte
@@ -50,17 +51,21 @@ def qadd7(i, j):
         t = 127;
     return t;
 
-print (qadd8(255, 5));
-i = c_ushort(-3);
-print (i);
+#print (qadd8(255, 5));
+#i = c_ushort(-3);
+#print (i);
 
 
 def cos8(value):
-  return int(math.cos(float(value)/128*math.pi+math.pi)*128)+128
-#return int(math.cos(float(value)/128))
+  return int(round(math.cos(float(value)/127.5*math.pi+math.pi)*127.5+127.5))
 
 def sin8(value):
-  return int(math.sin(float(value)/128*math.pi+math.pi)*128)+128
+  return int(round(math.sin(float(value)/127.5*math.pi+math.pi)*127.5+127.5))
+
+def RGBColor(r, g, b):
+        return Color(r, g, b)
+
+stripLen = 50
 
 ax = neopixel_image.Axis(256, 40)
 
@@ -73,36 +78,15 @@ pixR.putPixelCoord((80, 257))
 pixR.putPixelCoord((100, 110))
 pixR.putPixelCoord((120, 130))
 
-pixG = neopixel_image.Graph(ax, (255, 255, 0))
-pixG.putPixelCoord((0, 0))
-pixG.putPixelCoord((10, 40))
-pixG.putPixelCoord((30, 20))
-pixG.putPixelCoord((40, 50))
-pixG.putPixelCoord((50, 30))
-pixG.putPixelCoord((60, -1))
-pixG.putPixelCoord((70, 20))
-pixG.putPixelCoord((80, 60))
-pixG.putPixelCoord((90, 256))
-pixG.putPixelCoord((100, 200))
-pixG.putPixelCoord((110, 200))
-
-pixB = neopixel_image.Graph(ax, (0, 0, 255))
-pixB.putPixelCoord((100, 0))
-pixB.putPixelCoord((110, 40))
-pixB.putPixelCoord((130, 20))
-pixB.putPixelCoord((140, 50))
-pixB.putPixelCoord((150, 30))
-pixB.putPixelCoord((160, -1))
-pixB.putPixelCoord((170, 20))
-
 pixG = neopixel_image.Graph(ax, (0, 255, 0))
 for i in range(600):
                 pixG.putPixel(cos8(i))
 
+pixZ = neopixel_image.Graph(ax, (0, 255, 255))
+for i in range(600):
+                pixZ.putPixel(sin8(i))
 
-#pixZ = neopixel_image.Graph(ax, (0, 255, 255))
-#for i in range(600):
-#                pixZ.putPixel(sin8(i))
+pxls = neopixel_image.Axis(stripLen, 350)
 
 neopixel_image.saveImage()
 
