@@ -60,9 +60,9 @@ class Graph:
         coord = self.axis.realCoords(coord)
         #lastCoord = self.realCoords(self.lastPixelCoord)
         lastCoord = self.axis.realCoords(self.lastPixelCoord)
-        r = self.color[0] / self.jointColorLower
-        g = self.color[1] / self.jointColorLower
-        b = self.color[2] / self.jointColorLower
+        r = round(self.color[0] / self.jointColorLower)
+        g = round(self.color[1] / self.jointColorLower)
+        b = round(self.color[2] / self.jointColorLower)
         draw.line((lastCoord, coord),  (r, g, b))
         im.putpixel(lastCoord, self.color)
         

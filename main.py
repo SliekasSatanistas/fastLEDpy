@@ -1,7 +1,7 @@
 from ctypes import *
 
 import neopixel_image
-from neopixel import *
+#from neopixel import *
 import math
 
 #bool_ 	Boolean (True or False) stored as a byte
