@@ -1,4 +1,5 @@
 from ctypes import *
+#import colorsys
 
 import neopixel_image
 #from neopixel import *
@@ -62,11 +63,17 @@ def cos8(value):
 def sin8(value):
   return int(round(math.sin(float(value)/127.5*math.pi+math.pi)*127.5+127.5))
 
-def RGBColor(r, g, b):
-        return Color(r, g, b)
+"""Convert the provided red, green, blue color to a 24-bit color value.
+Each color component should be a value 0-255 where 0 is the lowest intensity
+and 255 is the highest intensity.
+"""
+def RGBColor(red, green, blue, white = 0):
+    return (white << 24) | (red << 16)| (green << 8) | blue
+
 
 stripLen = 50
-
+leds = [None]*stripLen
+print (RGBColor(255, 255, 255))
 ax = neopixel_image.Axis(256, 40)
 
 pixR = neopixel_image.Graph(ax, (255, 0, 0))
